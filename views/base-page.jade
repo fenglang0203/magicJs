@@ -1,0 +1,14 @@
+//
+    基础页面，每个页面都有公共的assets资源 ，所以head是一样的
+    每个页面不一样的有部分是head里面的assets，其他页面extend的时候，append head就可以
+    不一样的还包括content 和 fscripts
+doctype 5
+html
+  head
+    block head
+        meta(charset="utf-8")
+        include common-assets
+  body
+    block content
+
+  block fscripts

@@ -1,0 +1,52 @@
+extends ../base-page
+block append head
+    style
+        #editor{
+            position:absolute;
+            right:0;
+            top:0;
+            left:0;
+            bottom:0
+        }
+        .editor{
+            width: 800px;
+            height: 400px;
+            position: relative;
+        }
+block content
+    h1 让你的js 在我的“headless browser”(中文可以理解问后端浏览器，一个看不到的浏览器)
+    div.span24
+        div.show-grid.row-fluid
+            div.span8
+            div.span12
+                form#J_TCreateMD.form-horizontal(action="/action/save/scripts")
+                    fieldset
+                        legend 写一个简单的js吧，我来帮你注入到指定的网址中
+                        div.control-group
+                            label.control-label 选择数据库(100个店铺拓展商城店铺）
+                            div.controls
+                                select(name="title")
+                                    option(value="tuozhan") 拓展版店铺
+                                    option(value="shangcheng") 商城店铺
+                                p.help-block 目前后台会把你的js在100家店铺页面执行，干什么你来决定
+                        div.control-group
+                            div.control-label 可执行的javascript脚本
+                            div.controls.editor
+                                input#editor_content(type="hidden", name="content")
+                                div#editor
+                                    return KISSY.DOM.query('*').length;
+                        div.form-actions
+                            div.ks-button.ks-button-primary#J_TSubmit 执行
+                        div.form-action
+                            div.loading.hidden
+                              h2 后台数据正在执行.....
+
+            div.span8
+
+block fscripts
+    script(src="/public/javascripts/create.js")
+    script(src="http://d1n0x3qji82z53.cloudfront.net/src-min-noconflict/ace.js", type="text/javascript", charset="utf-8")
+    script
+        var editor = ace.edit("editor");
+        editor.setTheme("ace/theme/monokai");
+        editor.getSession().setMode("ace/mode/javascript");

@@ -1,0 +1,1 @@
+KISSY.DOM.query('*').length;
